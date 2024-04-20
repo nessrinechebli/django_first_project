@@ -17,8 +17,8 @@ def index(request):
     return render(request, "listings/listings.html", context)
 
 def listing(request, listing_id):
-    listings=get_object_or_404(Listing,id=listing_id)
+    listing=get_object_or_404(Listing,id=listing_id)
     context = {
-        "listings":listings
+        "listing":listing
     }
     return render(request, "listings/listing.html", context)

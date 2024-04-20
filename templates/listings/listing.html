@@ -43,7 +43,7 @@
         <div class="col-md-9">
           <!-- Home Main Image -->
           {% if listing.main_image %}
-            <img src="assets/img/homes/home-1.jpg" alt="" class="img-main img-fluid mb-3">
+            <img src="{{listing.main_image.url}}" alt="" class="img-main img-fluid mb-3">
           {% else %}
             <img src="#" alt="" class="img-main img-fluid mb-3">
           {% endif %}
@@ -52,7 +52,7 @@
             <div class="col-md-2">
               {% if listing.slider_image_1 %}
                 <a href="assets/img/homes/home-inside-1.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-1.jpg" alt="" class="img-fluid">
+                <img src="{{listing.slider_image_1.url}}" alt="" class="img-fluid">
               </a>
               {% else %}
                 <a href="#" data-lightbox="home-images">
@@ -63,7 +63,7 @@
             <div class="col-md-2">
               {% if listing.slider_image_2 %}
                 <a href="assets/img/homes/home-inside-2.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-2.jpg" alt="" class="img-fluid">
+                <img src="{{listing.slider_image_2.url}}" alt="" class="img-fluid">
               </a>
               {% else %}
                 <a href="#" data-lightbox="home-images">
@@ -74,7 +74,7 @@
             <div class="col-md-2">
               {% if listing.slider_image_3 %}
                 <a href="assets/img/homes/home-inside-3.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-3.jpg" alt="" class="img-fluid">
+                <img src="{{listing.slider_image_3.url}}" alt="" class="img-fluid">
               </a>
               {% else %}
                 <a href="#" data-lightbox="home-images">
@@ -85,7 +85,7 @@
             <div class="col-md-2">
               {% if listing.slider_image_4 %}
                 <a href="assets/img/homes/home-inside-4.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-4.jpg" alt="" class="img-fluid">
+                <img src="{{listing.slider_image_4.url}}" alt="" class="img-fluid">
               </a>
               {% else %}
                 <a href="#" data-lightbox="home-images">
@@ -96,7 +96,7 @@
             <div class="col-md-2">
               {% if listing.slider_image_5 %}
                 <a href="assets/img/homes/home-inside-5.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-5.jpg" alt="" class="img-fluid">
+                <img src="{{listing.slider_image_6.url}}" alt="" class="img-fluid">
               </a>
               {% else %}
                 <a href="#" data-lightbox="home-images">
@@ -107,7 +107,7 @@
             <div class="col-md-2">
               {% if listing.slider_image_6 %}
                 <a href="assets/img/homes/home-inside-6.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-6.jpg" alt="" class="img-fluid">
+                <img src="{{listing.slider_image_6.url}}" alt="" class="img-fluid">
               </a>
               {% else %}
                 <a href="#" data-lightbox="home-images">
@@ -199,9 +199,11 @@
         </div>
         <div class="modal-body">
           <form action="{% url 'contact' %}" method="post">
+            {% csrf_token %}
             <div class="form-group">
               <label for="property_name" class="col-form-label">Property:</label>
-              <input type="text" name="listing" class="form-control" value="45 Drivewood Cirlce" disabled>
+            
+              <input type="text" name="listing" class="form-control" value="{{listing.id}}" >
             </div>
             <div class="form-group">
               <label for="name" class="col-form-label">Name:</label>

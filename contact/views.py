@@ -1,8 +1,12 @@
+from pprint import pprint
 from django.shortcuts import render
 from acount.models import CustomerProfile
 import smtplib
+from contact.models import Contact
+from listings.models import Listing
+
 # Create your views here.
-def send_email(subject, message, receiver_address="yawapen977@acentni.com"):
+def send_email(subject, message, receiver_address):
     # Your email address and password
     sender_address = "meriemmeriem19alg@gmail.com"
     sender_password = "kdza nxxy ywus oyyc"
@@ -23,7 +27,20 @@ def send_email(subject, message, receiver_address="yawapen977@acentni.com"):
 
 def contact(request):
     if request.method == "POST":
-          listing=request.method == "GET"
+      listing=request.POST.get('listing',"")
+      name=request.POST.get('name',"")
+      email=request.POST.get('email',"")
+      message=request.POST.get('message',"")
+      customer=request.user.customerprofile
+      subject="contact sur "+listing
+      print(listing)
+      pprint(request.POST)
+      send_email(subject="New Listing", message=f"You have a new listing from {name}.\n\n{email}", receiver_address=email)
+      listing=Listing.objects.get(id=listing)
+      
+      contact=Contact(listing=listing,email=email,customer=customer,content=message,subject=subject)
+      contact.save()
+      pprint(contact)
     context = {
      
     }

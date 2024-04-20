@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from acount.models import *
+from contact.models import Contact
 from listings.models import Listing
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -115,4 +116,8 @@ def logout(request):
     return render(request, 'pages/index.html')
 
 def dashboard(request):
-    return render(request, 'pages/dashboard.html')
+    contacts=Contact.objects.filter(customer=request.user.customerprofile)
+    context={
+        'contacts':contacts
+    }
+    return render(request, 'pages/dashboard.html',context)
