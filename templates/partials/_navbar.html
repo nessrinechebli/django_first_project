@@ -23,11 +23,11 @@
 
         {% if user.is_authenticated %}
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mr-3">
+          <li class="nav-item mr-3 d-flex align-items-center">
             <a class="nav-link" href="{% url 'dashboard' %}">
-              <img ></a>
+              <img src="{{user.customerprofile.profile_pic.url}}" style="width:50px;height:50px;" class="img-thumbnail rounded-circle" ></a>
           </li>
-          <li class="nav-item mr-3">
+          <li class="nav-item mr-3 d-flex align-items-center">
             <a class="nav-link" href="{% url 'logout' %}">
               <i class="fas fa-door-open"></i>
 
@@ -36,7 +36,7 @@
         </ul>
         {% else %}
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item mr-3">
+          <li class="nav-item mr-3" >
             <a class="nav-link" href="{% url 'register' %}">
               <i class="fas fa-user-plus"></i> Register</a>
           </li>

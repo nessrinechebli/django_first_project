@@ -20,5 +20,5 @@ class CustomerAdmin(admin.ModelAdmin):
 
 admin.site.register(CustomerProfile,CustomerAdmin)
 admin.site.register(AgentProfile, AgentAdmin)
-
+admin.site.register(Announce)
 

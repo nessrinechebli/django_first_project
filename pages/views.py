@@ -4,9 +4,15 @@ from listings.models import Listing
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib import messages
+from acount.models import Announce
 # Create your views here.
 def index(request):
-    return render(request, 'pages/index.html') 
+    announcements=Announce.objects.all()
+    context = {
+
+        "announcements":announcements,
+    }
+    return render(request, 'pages/index.html',context) 
   
 def about(request):
     agent1=AgentProfile.objects.get(is_month_seller=True)
